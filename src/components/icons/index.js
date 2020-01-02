@@ -10,7 +10,7 @@ export const CrownIcon = () => (
   >
     <title>Group</title>
     <desc>Created with Sketch.</desc>
-    <g id="WiP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="WiP" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="Artboard" transform="translate(-90.000000, -38.000000)">
         <g id="Group" transform="translate(90.000000, 38.000000)">
           <polygon
@@ -20,7 +20,7 @@ export const CrownIcon = () => (
           ></polygon>
           <polygon
             id="Triangle"
-            fill-opacity="0.262838724"
+            fillOpacity="0.262838724"
             fill="#101A1A"
             points="25 8 40 39 10 39"
           ></polygon>
@@ -41,7 +41,7 @@ export const CartIcon = () => (
     x="0px"
     y="0px"
     viewBox="0 0 407.453 407.453"
-    style={{ "enable-background": `new 0 0 407.453 407.453` }}
+    style={{ enableBackground: `new 0 0 407.453 407.453` }}
   >
     <g>
       <path

@@ -10,7 +10,9 @@ import { selectCurrentUser } from "./user";
 import {
   selectShopCollections,
   selectShopCollection,
-  selectCollectionForPreview
+  selectCollectionForPreview,
+  selectIsCollectionsLoaded,
+  selectIsFetchingCollection
 } from "./shop";
 
 export {
@@ -21,5 +23,7 @@ export {
   selectCurrentUser,
   selectShopCollections,
   selectShopCollection,
-  selectCollectionForPreview
+  selectCollectionForPreview,
+  selectIsCollectionsLoaded,
+  selectIsFetchingCollection
 };

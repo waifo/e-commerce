@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import logger from "redux-logger";
 import { persistStore } from "redux-persist";
+import ReduxThunk from "redux-thunk";
 
 import getReducers from "../reducers";
 
-const middlerwares = [logger];
+const middlerwares = [logger, ReduxThunk];
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

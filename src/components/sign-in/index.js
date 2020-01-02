@@ -38,8 +38,8 @@ class SignIn extends React.Component {
     const { email, password } = this.state;
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
+        email.trim(),
+        password.trim
       );
       await createUserProfileDocument(user);
     } catch (error) {
