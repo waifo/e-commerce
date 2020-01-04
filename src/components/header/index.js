@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
 import { selectCurrentUser, selectCartHidden } from "../../selectors";
 import { auth } from "../../firebase/firebase.util";
 import Cart from "../cart";
 import { CrownIcon } from "../icons";
 import CartDropdown from "../cart-dropdown";
+import { signOutStart } from "../../actions/user";
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -34,7 +36,7 @@ const HeaderLink = styled(Link)`
   padding: 10px 15px;
 `;
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to="/">
       <CrownIcon />
@@ -43,7 +45,7 @@ const Header = ({ currentUser, hidden }) => (
       <HeaderLink to="/shop">Shop</HeaderLink>
       <HeaderLink to="/contact">Contact</HeaderLink>
       {currentUser ? (
-        <HeaderLink onClick={() => auth.signOut()}>Sign Out</HeaderLink>
+        <HeaderLink onClick={signOutStart}>Sign Out</HeaderLink>
       ) : (
         <HeaderLink to="/signin">Sign In</HeaderLink>
       )}
@@ -58,4 +60,8 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  signOutStart: () => dispatch(signOutStart())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

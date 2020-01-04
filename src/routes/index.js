@@ -11,7 +11,7 @@ import Shop from "../views/shop";
 import SignInSignUp from "../views/sign-in-sign-up";
 import Checkout from "../views/checkout";
 
-import { setCurrentUser } from "../actions/user";
+import { setCurrentUser, checkUSerSession } from "../actions/user";
 
 import { auth, createUserProfileDocument } from "../firebase/firebase.util";
 
@@ -19,19 +19,20 @@ class Routes extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data()
-          });
-        });
-      }
-      setCurrentUser(userAuth);
-    });
+    const { setCurrentUser, checkUSerSession } = this.props;
+    checkUSerSession();
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+    //     userRef.onSnapshot(snapshot => {
+    //       setCurrentUser({
+    //         id: snapshot.id,
+    //         ...snapshot.data()
+    //       });
+    //     });
+    //   }
+    //   setCurrentUser(userAuth);
+    // });
   }
 
   componentWillUnmount() {
@@ -64,7 +65,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentUser: user => dispatch(setCurrentUser(user))
+    setCurrentUser: user => dispatch(setCurrentUser(user)),
+    checkUSerSession: () => dispatch(checkUSerSession())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);
