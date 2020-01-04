@@ -10,7 +10,10 @@ import {
 } from "../../selectors/shop";
 import CollectionOverviewContainer from "../../components/collection-overview/collection-overview-container";
 import Category from "../category";
-import { fetchCollectionStartAsync } from "../../actions/shop";
+import {
+  fetchCollectionStartAsync,
+  fetchCollectionStart
+} from "../../actions/shop";
 
 import WithSpinner from "../../components/with-spinner";
 
@@ -23,8 +26,8 @@ class Shop extends React.Component {
   // };
 
   componentDidMount() {
-    const { fetchCollectionStartAsync } = this.props;
-    fetchCollectionStartAsync();
+    const { fetchCollectionStart } = this.props;
+    fetchCollectionStart();
     // const collectionRef = firestore.collection("collections");
     // collectionRef.onSnapshot(async snapshot => {
     //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
@@ -73,7 +76,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync())
+  fetchCollectionStart: () => dispatch(fetchCollectionStart())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);
