@@ -1,24 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "../../components/card";
+import Directory from "../../components/directory";
 
-const HomeContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 20px 80px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
+const HomeContainer = styled.div``;
 const Home = () => (
-  <div>
-    <HomeContainer>
-      <Card size="small" />
-      <Card size="small" />
-      <Card size="small" />
-      <Card size="large" />
-      <Card size="large" />
-    </HomeContainer>
-  </div>
+  <HomeContainer>
+    <Directory />
+  </HomeContainer>
 );
 
 export default Home;
