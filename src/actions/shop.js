@@ -3,11 +3,7 @@ import {
   convertCollectionsSnapshotToMap
 } from "../firebase/firebase.util";
 
-export const ShopActionTypes = {
-  FETCH_COLLECTION_START: "FETCH_COLLECTION_START",
-  FETCH_COLLECTION_SUCCESS: "FETCH_COLLECTION_SUCCESS",
-  FETCH_COLLECTION_FAILURE: "FETCH_COLLECTION_FAILURE"
-};
+import { ShopActionTypes } from "../types";
 
 export const fetchCollectionStart = () => ({
   type: ShopActionTypes.FETCH_COLLECTION_START

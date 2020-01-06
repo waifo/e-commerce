@@ -8,7 +8,8 @@ import {
   selectIsFetchingCollection,
   selectIsCollectionsLoaded
 } from "../../selectors/shop";
-import CollectionOverviewContainer from "../../components/collection-overview/collection-overview-container";
+// import CollectionOverviewContainer from "../../components/collection-overview/collection-overview-container";
+import CollectionOverview from "../../components/collection-overview";
 import Category from "../category";
 import {
   fetchCollectionStartAsync,
@@ -20,49 +21,28 @@ import WithSpinner from "../../components/with-spinner";
 const ShopContainer = styled.div``;
 
 class Shop extends React.Component {
-  // unsubscribeFromSnapshot = null;
-  // state = {
-  //   isLoading: true
-  // };
-
   componentDidMount() {
     const { fetchCollectionStart } = this.props;
     fetchCollectionStart();
-    // const collectionRef = firestore.collection("collections");
-    // collectionRef.onSnapshot(async snapshot => {
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //   updateCollection(collectionsMap);
-    //   this.setState({ isLoading: false });
-    // });
-    // fetch(
-    //   "https://firestore.googleapis.com/v1/projects/crown-db-8a5d1/databases/(default)/documents/collections"
-    // ).then(async snapshot => {
-    //   console.log("snapshot", snapshot);
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //   updateCollection(collectionsMap);
-    //   this.setState({ isLoading: false });
-    // });
-    // collectionRef.get().then(async snapshot => {
-    //   console.log("snapshot", snapshot);
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //   updateCollection(collectionsMap);
-    //   this.setState({ isLoading: false });
-    // });
   }
   render() {
     const { match, isFetchingCollection, isCollectionsLoaded } = this.props;
-    // const { isLoading } = this.state;
+
     return (
       <ShopContainer>
         <Route
-          exact
+          exact={true}
           path={`${match.path}`}
-          Component={<CollectionOverviewContainer />}
+          render={props =>
+            WithSpinner({ ...props, isLoading: isFetchingCollection })(
+              CollectionOverview
+            )
+          }
         />
         <Route
           path={`${match.path}/:categoryId`}
           render={props =>
-            WithSpinner({ ...props, isFetchingCollection })(Category)
+            WithSpinner({ ...props, isLoading: !isCollectionsLoaded })(Category)
           }
         />
       </ShopContainer>

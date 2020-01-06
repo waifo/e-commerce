@@ -11,33 +11,19 @@ import Shop from "../views/shop";
 import SignInSignUp from "../views/sign-in-sign-up";
 import Checkout from "../views/checkout";
 
-import { setCurrentUser, checkUSerSession } from "../actions/user";
-
-import { auth, createUserProfileDocument } from "../firebase/firebase.util";
+import { checkUSerSession } from "../actions/user";
 
 class Routes extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser, checkUSerSession } = this.props;
+    const { checkUSerSession } = this.props;
     checkUSerSession();
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //     userRef.onSnapshot(snapshot => {
-    //       setCurrentUser({
-    //         id: snapshot.id,
-    //         ...snapshot.data()
-    //       });
-    //     });
-    //   }
-    //   setCurrentUser(userAuth);
-    // });
   }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+  // componentWillUnmount() {
+  //   this.unsubscribeFromAuth();
+  // }
   render() {
     return (
       <div>
@@ -65,7 +51,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentUser: user => dispatch(setCurrentUser(user)),
     checkUSerSession: () => dispatch(checkUSerSession())
   };
 };
