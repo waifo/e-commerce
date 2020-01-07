@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
-import { H1, SubTitle } from "../globals";
+import { SubTitle } from "../globals";
 
 const Container = styled.div`
 height: ${({ size }) => (size ? "380px" : "240px")}

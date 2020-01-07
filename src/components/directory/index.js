@@ -17,7 +17,7 @@ const DirectoryContainer = styled.div`
 const Directory = ({ sections }) => (
   <DirectoryContainer>
     {sections.map(({ id, ...otherProps }) => (
-      <Card id={id} {...otherProps} />
+      <Card key={id} {...otherProps} />
     ))}
   </DirectoryContainer>
 );

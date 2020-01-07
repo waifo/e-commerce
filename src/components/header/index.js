@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { selectCurrentUser, selectCartHidden } from "../../selectors";
-import { auth } from "../../firebase/firebase.util";
 import Cart from "../cart";
 import { CrownIcon } from "../icons";
 import CartDropdown from "../cart-dropdown";
@@ -45,7 +44,9 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       <HeaderLink to="/shop">Shop</HeaderLink>
       <HeaderLink to="/contact">Contact</HeaderLink>
       {currentUser ? (
-        <HeaderLink onClick={signOutStart}>Sign Out</HeaderLink>
+        <HeaderLink to="#" onClick={signOutStart}>
+          Sign Out
+        </HeaderLink>
       ) : (
         <HeaderLink to="/signin">Sign In</HeaderLink>
       )}

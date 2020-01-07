@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -11,44 +11,42 @@ import {
 // import CollectionOverviewContainer from "../../components/collection-overview/collection-overview-container";
 import CollectionOverview from "../../components/collection-overview";
 import Category from "../category";
-import {
-  fetchCollectionStartAsync,
-  fetchCollectionStart
-} from "../../actions/shop";
+import { fetchCollectionStart } from "../../actions/shop";
 
 import WithSpinner from "../../components/with-spinner";
 
 const ShopContainer = styled.div``;
 
-class Shop extends React.Component {
-  componentDidMount() {
-    const { fetchCollectionStart } = this.props;
+const Shop = ({
+  fetchCollectionStart,
+  match,
+  isFetchingCollection,
+  isCollectionsLoaded
+}) => {
+  useEffect(() => {
     fetchCollectionStart();
-  }
-  render() {
-    const { match, isFetchingCollection, isCollectionsLoaded } = this.props;
+  }, [fetchCollectionStart]);
 
-    return (
-      <ShopContainer>
-        <Route
-          exact={true}
-          path={`${match.path}`}
-          render={props =>
-            WithSpinner({ ...props, isLoading: isFetchingCollection })(
-              CollectionOverview
-            )
-          }
-        />
-        <Route
-          path={`${match.path}/:categoryId`}
-          render={props =>
-            WithSpinner({ ...props, isLoading: !isCollectionsLoaded })(Category)
-          }
-        />
-      </ShopContainer>
-    );
-  }
-}
+  return (
+    <ShopContainer>
+      <Route
+        exact={true}
+        path={`${match.path}`}
+        render={props =>
+          WithSpinner({ ...props, isLoading: isFetchingCollection })(
+            CollectionOverview
+          )
+        }
+      />
+      <Route
+        path={`${match.path}/:categoryId`}
+        render={props =>
+          WithSpinner({ ...props, isLoading: !isCollectionsLoaded })(Category)
+        }
+      />
+    </ShopContainer>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   isFetchingCollection: selectIsFetchingCollection,
