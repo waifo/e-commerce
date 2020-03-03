@@ -9,11 +9,9 @@ import {
   selectIsCollectionsLoaded
 } from "../../selectors/shop";
 // import CollectionOverviewContainer from "../../components/collection-overview/collection-overview-container";
-import CollectionOverview from "../../components/collection-overview";
-import Category from "../category";
+import CollectionOverviewContainer from "../../components/collection-overview/collection-overview-container";
+import CategoryContainer from "../category";
 import { fetchCollectionStart } from "../../actions/shop";
-
-import WithSpinner from "../../components/with-spinner";
 
 const ShopContainer = styled.div``;
 
@@ -32,18 +30,9 @@ const Shop = ({
       <Route
         exact={true}
         path={`${match.path}`}
-        render={props =>
-          WithSpinner({ ...props, isLoading: isFetchingCollection })(
-            CollectionOverview
-          )
-        }
+        render={CollectionOverviewContainer}
       />
-      <Route
-        path={`${match.path}/:categoryId`}
-        render={props =>
-          WithSpinner({ ...props, isLoading: !isCollectionsLoaded })(Category)
-        }
-      />
+      <Route path={`${match.path}/:categoryId`} render={CategoryContainer} />
     </ShopContainer>
   );
 };

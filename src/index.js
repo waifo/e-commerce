@@ -3,21 +3,25 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { ApolloProvider } from "react-apollo";
 
+import client from "./graphql";
 import { store, persistor } from "./store";
 import Routes from "./routes";
 import { GlobalStyles } from "./components/globals";
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <PersistGate persistor={persistor}>
-        <GlobalStyles />
-        <Routes />
-      </PersistGate>
-    </BrowserRouter>
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <PersistGate persistor={persistor}>
+          <GlobalStyles />
+          <Routes />
+        </PersistGate>
+      </BrowserRouter>
+    </Provider>
+  </ApolloProvider>,
 
   document.getElementById("root")
 );

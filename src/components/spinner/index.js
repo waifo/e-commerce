@@ -29,13 +29,10 @@ const SpinnerContainer = styled.div`
   }
 `;
 
-const WithSpinner = ({ isLoading, ...otherProps }) => WrappedComponent =>
-  isLoading ? (
-    <SpinnerOverlay>
-      <SpinnerContainer />
-    </SpinnerOverlay>
-  ) : (
-    <WrappedComponent {...otherProps} />
-  );
+const Spinner = () => (
+  <SpinnerOverlay>
+    <SpinnerContainer />
+  </SpinnerOverlay>
+);
 
-export default WithSpinner;
+export default Spinner;
