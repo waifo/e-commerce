@@ -3,7 +3,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient, gql } from "apollo-boost";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/api"
+  uri: "https://e-toy-server.herokuapp.com/"
 });
 
 const cache = new InMemoryCache();
