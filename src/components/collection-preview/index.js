@@ -14,15 +14,18 @@ const Preview = styled.div`
 `;
 const Item = styled.div``;
 
-const CollectionPreview = ({ title, items }) => (
+const CollectionPreview = (item) => (
   <CollectionContainer>
-    <H2>{title.toUpperCase()}</H2>
-    <Preview>
+    <H2>{item.title.toUpperCase()}</H2>
+    {/* <Preview>
       {items
         .filter((item, id) => id < 4)
         .map(item => (
           <CollectionItem key={item.id} item={item} />
         ))}
+    </Preview> */}
+    <Preview>
+      <CollectionItem key={item._id} item={item} />
     </Preview>
   </CollectionContainer>
 );

@@ -10,8 +10,8 @@ const OverviewContainer = styled.div`
 
 const CollectionOverview = ({ collections }) => (
   <OverviewContainer>
-    {collections.map(({ id, ...otherCollectionProps }) => (
-      <CollectionPreview key={id} {...otherCollectionProps} />
+    {collections.map(({ _id, ...otherCollectionProps }) => (
+      <CollectionPreview key={_id} {...otherCollectionProps} />
     ))}
   </OverviewContainer>
 );

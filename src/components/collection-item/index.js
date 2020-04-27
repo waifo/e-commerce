@@ -18,7 +18,7 @@ const PhotoContainer = styled.div`
   grid-area: cover;
   posiiton: relative;
   width: 100%;
-  background-image: ${props =>
+  background-image: ${(props) =>
     props.coverURL ? `url(${props.coverURL})` : "none"};
   background-size: cover;
   background-repeat: no-repeat;
@@ -77,8 +77,8 @@ const CollectionItem = ({ item, addItem }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(CollectionItem);

@@ -3,14 +3,14 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient, gql } from "apollo-boost";
 
 const httpLink = createHttpLink({
-  uri: "https://e-toy-server.herokuapp.com/"
+  uri: "https://e-toy-server.herokuapp.com/api",
 });
 
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   link: httpLink,
-  cache
+  cache,
 });
 
 client
@@ -18,13 +18,13 @@ client
     query: gql`
       {
         collections {
-          id
+          _id
           title
         }
       }
-    `
+    `,
   })
-  .then(res => console.log(res))
-  .catch(error => console.log(error));
+  .then((res) => console.log(res))
+  .catch((error) => console.log(error));
 
 export default client;

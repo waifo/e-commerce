@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { createStructuredSelector } from "reselect";
-import { connect } from "react-redux";
+import { Query } from "react-apollo";
 
+import Spinner from "../spinner";
+import { GET_COLLECTIONS } from "../../graphql/queries/product";
 import Card from "../card";
-import { selectDirectorySections } from "../../selectors/directory";
 
 const DirectoryContainer = styled.div`
   display: flex;
@@ -14,16 +14,17 @@ const DirectoryContainer = styled.div`
   justify-content: space-between;
 `;
 
-const Directory = ({ sections }) => (
+const Directory = () => (
   <DirectoryContainer>
-    {sections.map(({ id, ...otherProps }) => (
-      <Card key={id} {...otherProps} />
-    ))}
+    <Query query={GET_COLLECTIONS}>
+      {({ loading, error, data }) => {
+        if (loading) return <Spinner />;
+        return data.collections.map(({ _id, ...otherProps }) => (
+          <Card key={_id} {...otherProps} />
+        ));
+      }}
+    </Query>
   </DirectoryContainer>
 );
 
-const mapStateToProps = createStructuredSelector({
-  sections: selectDirectorySections
-});
-
-export default connect(mapStateToProps)(Directory);
+export default Directory;
